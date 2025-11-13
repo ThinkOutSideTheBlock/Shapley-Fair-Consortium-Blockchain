@@ -240,7 +240,10 @@ Result: 95-100% ITM reduction with zero fairness loss (Δ = 0.3%)
 ---
 
 ## Citation
+## Citation
+If you use this software, please cite it as:
 
+Khoshakhlagh, Sajjad. (2025). Incentive-Compatible Fair Allocation in Consortium Blockchains: A Multi-Method Game-Theoretic Analysis of Shapley-Based Mechanisms (v1.0.0-alpha). Zenodo. https://doi.org/10.5281/zenodo.17600916
 ## License
 
 MIT License
