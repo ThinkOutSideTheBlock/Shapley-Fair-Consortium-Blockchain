@@ -1,0 +1,19 @@
+run_id: "validation"
+random_seed: 42
+output_dir: "experiments/validation"
+parallel_workers: 4
+checkpoint_interval: 10
+
+n_iterations: 1
+n_mc_samples: 2000
+
+parameters:
+  n_agents: [4, 6]
+  mu: [10.0]
+  sigma_q: [2.0, 5.0]
+  sigma_report: [0.0]
+  detection_prob: [0.0, 0.5]
+  penalty: [0.0, 2.0]
+  payoff_shapes: ["linear", "subadditive"]
+  allocation_methods: ["exact_shapley", "mc_shapley", "proportional"]
+  report_model: ["truthful"]

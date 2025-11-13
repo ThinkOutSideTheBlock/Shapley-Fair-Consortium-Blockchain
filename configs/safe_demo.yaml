@@ -1,0 +1,50 @@
+# Ultra-fast test configuration (10 minutes max)
+# Optimized for quick validation of system functionality
+
+run_id: "ultrafast_demo"
+random_seed: 42
+log_level: "INFO"
+
+# Output configuration
+output_dir: "experiments/ultrafast_demo"
+parallel_workers: 4  # Adjust to CPU cores
+checkpoint_interval: 50
+
+# Monte Carlo settings - REDUCED
+n_iterations: 15  # Minimum for statistical validity
+n_mc_samples: 3000  # Still good approximation
+
+# Parameter grid - MINIMAL
+parameters:
+  # FIXED PARAMETERS
+  n_agents: [6]  # Single size
+  mu: [15.0]
+  payoff_shapes: ["subadditive"]  # Most realistic
+  
+  # KEY VARIABLES (2x2x2x2 = 16 combinations)
+  sigma_q: [2.0, 5.0]  # Low vs High heterogeneity
+  sigma_report: [0.0, 1.0]  # Truthful vs Noisy
+  detection_prob: [0.0, 0.5]  # No vs Moderate enforcement
+  penalty: [0.0, 2.0]  # No vs Severe penalty
+  
+  # Methods - Core comparison
+  allocation_methods:
+    - "proportional"
+    - "mc_shapley"  # Fast MC version
+    - "weighted_shapley"
+
+# Reduced trials for speed
+n_trials: 3  # 3 trials per combination
+# Total runs: 16 combinations × 3 methods × 3 trials = 144 runs
+
+# Analysis settings
+analysis:
+  compute_statistics: true
+  generate_plots: true
+  save_checkpoints: true
+  
+# Performance optimizations
+optimizations:
+  use_caching: true
+  batch_size: 20
+  max_parallel_games: 10

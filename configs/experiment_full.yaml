@@ -1,0 +1,46 @@
+# Experiment Configuration - Full Paper Run
+# Purpose: Complete parameter sweep for publication
+
+run_id: "shapley_consortium_full"
+random_seed: 42
+log_level: "INFO"
+
+# Output configuration
+output_dir: "experiments/full_run"
+parallel_workers: 8
+checkpoint_interval: 100
+
+# Monte Carlo settings
+n_iterations: 500  # High iteration count for robust estimates
+n_mc_samples: 10000  # High sample count for accurate approximation
+
+# Parameter grid
+parameters:
+  # Network size
+  n_agents: [4, 6, 8, 10, 12]
+  
+  # Contribution distribution
+  mu: [5.0, 10.0, 15.0, 20.0]
+  sigma_q: [1.0, 2.0, 3.0, 5.0, 8.0]  # From low to high heterogeneity
+  
+  # Reporting behavior
+  sigma_report: [0.0, 0.25, 0.5, 1.0, 2.0]
+  
+  # Enforcement regime
+  detection_prob: [0.0, 0.1, 0.2, 0.3, 0.5, 0.7, 0.9, 1.0]
+  penalty: [0.0, 0.5, 1.0, 2.0, 5.0]
+  
+  # Game structure
+  payoff_shapes: 
+    - "linear"
+    - "subadditive"
+    - "superadditive"
+    - "threshold"
+  
+  # Allocation methods
+  allocation_methods:
+    - "proportional"
+    - "marginal"
+    - "exact_shapley"
+    - "mc_shapley"
+    - "weighted_shapley"

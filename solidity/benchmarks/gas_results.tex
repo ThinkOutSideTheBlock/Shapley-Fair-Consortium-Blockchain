@@ -1,0 +1,20 @@
+% Gas Benchmark Results - Auto-generated
+\begin{table}[htbp]
+\centering
+\caption{Gas Costs for Shapley Allocation Operations}
+\label{tab:gas_costs}
+\begin{tabular}{|r|r|r|r|r|r|}
+\hline
+\textbf{n} & \textbf{Submit} & \textbf{Submit} & \textbf{Verify} & \textbf{Claim} & \textbf{Cost} \\
+\textbf{Agents} & \textbf{Direct} & \textbf{Merkle} & \textbf{(gas)} & \textbf{(gas)} & \textbf{(USD)} \\
+\hline
+5 & 445,724 & --- & 50,000 & 50,000 & \66.86 \\
+10 & 673,099 & --- & 50,000 & 50,000 & \100.96 \\
+20 & 1,127,914 & --- & 50,000 & 50,000 & \169.19 \\
+50 & --- & 224,398 & 50,000 & 50,000 & \33.66 \\
+100 & --- & 224,398 & 50,000 & 50,000 & \33.66 \\
+\hline
+\end{tabular}
+\\[0.5em]
+\footnotesize{Gas prices: 50 gwei, ETH: \$3000. Direct submission for $n \leq 20$, Merkle for $n > 20$.}
+\end{table}

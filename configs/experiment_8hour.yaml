@@ -1,0 +1,53 @@
+# Ultra-Fast Publication Configuration
+# Purpose: Generate solid preprint data in 8-10 hours
+# Strategy: Core parameter combinations only, remove redundancy
+
+run_id: "shapley_fast_publish"
+random_seed: 42
+log_level: "INFO"
+
+output_dir: "experiments/fast_publish"
+parallel_workers: 8
+checkpoint_interval: 50
+
+n_iterations: 1
+n_mc_samples: 5000
+
+# AGGRESSIVE REDUCTION for 8-10 hour runtime
+# Total combinations: 2 × 2 × 2 × 2 × 2 × 2 × 3 × 4 = 768 runs
+# Runtime: ~8-10 hours on 8 cores (5-6 seconds per run average)
+
+parameters:
+  # Network size: Focus on feasible + practical consortium sizes
+  # Remove n=4 (too small), keep 6 and 8 (realistic consortiums)
+  n_agents: [6, 8]
+
+  # Contribution distribution: Just low and high values
+  # Skip middle value
+  mu: [5.0, 20.0]
+
+  # Contribution heterogeneity: Homogeneous vs Heterogeneous only
+  sigma_q: [2.0, 5.0]
+
+  # Reporting noise: Truthful vs High noise (core contrast)
+  sigma_report: [0.0, 2.0]
+
+  # Detection probability: No enforcement vs Strong enforcement
+  detection_prob: [0.0, 0.9]
+
+  # Penalty: No penalty vs Severe
+  penalty: [0.0, 5.0]
+
+  # Game structure (KEEP ALL 3 - essential diversity)
+  payoff_shapes: ["linear", "subadditive", "superadditive"]
+
+  # All allocation methods (KEEP ALL 4 - core contribution)
+  allocation_methods:
+    - "exact_shapley"
+    - "mc_shapley"
+    - "mc_shapley_stratified"
+    - "weighted_shapley_owen"
+
+  # Fixed for consistency
+  q_dist: ["lognormal"]
+  report_model: ["truthful"]

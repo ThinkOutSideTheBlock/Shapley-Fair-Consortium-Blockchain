@@ -1,0 +1,21 @@
+# Quick Scalability Test
+run_id: "scalability_quick"
+random_seed: 42
+
+output_dir: "experiments/scalability_quick"
+parallel_workers: 4
+checkpoint_interval: 10
+
+n_iterations: 30
+n_mc_samples: 1000
+
+parameters:
+  n_agents: [3, 5, 8, 10]
+  mu: [10.0]
+  sigma_q: [2.0]
+  sigma_report: [0.0]
+  detection_prob: [0.0]
+  penalty: [0.0]
+  payoff_shapes: ["superadditive"]
+  allocation_methods: ["exact_shapley", "mc_shapley", "proportional"]
+  reporting_models: ["truthful"]

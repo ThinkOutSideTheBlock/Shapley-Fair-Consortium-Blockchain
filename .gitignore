@@ -1,0 +1,99 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environment
+venv/
+env/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+/.vscode/settings.json
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+*.ipynb
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+*.log
+experiment.log
+
+# Environment specific
+.env
+.env.local
+.env.*.local
+.env.test
+.env.testing
+
+# Solidity/Blockchain
+.solhint.json
+.solidity-coverity/
+artifacts/
+cache/
+coverage/
+dist/
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.slb
+
+# Tests
+.pytest_cache/
+.coverage
+htmlcov/
+*.coveragerc
+
+# Benchmarks
+.benchmarks/
+
+# Experiments (large data files)
+experiments/
+
+# Deployment
+deployments/
+
+# Build outputs
+*.pyc
+*.tmp
+
+# Git
+.git/
+
+# Local config files
+config.json
+secrets.json
+private.json

@@ -1,0 +1,42 @@
+# Experiment Configuration - Small Test Run
+# Purpose: Quick validation and debugging
+
+run_id: "shapley_consortium_test"
+random_seed: 42
+log_level: "INFO"
+
+# Output configuration
+output_dir: "experiments/test_run"
+parallel_workers: 2
+checkpoint_interval: 50
+
+# Monte Carlo settings
+n_iterations: 100  # Iterations per parameter combination
+n_mc_samples: 5000  # MC samples for approximate Shapley
+
+# Parameter grid
+parameters:
+  # Network size
+  n_agents: [4, 6, 8]
+  
+  # Contribution distribution
+  mu: [10.0, 20.0]  # Mean contribution
+  sigma_q: [2.0, 5.0]  # Contribution heterogeneity
+  
+  # Reporting behavior
+  sigma_report: [0.0, 0.5, 1.0]  # Reporting noise
+  
+  # Enforcement regime
+  detection_prob: [0.0, 0.3, 0.6, 1.0]
+  penalty: [0.0, 1.0, 2.0]
+  
+  # Game structure
+  payoff_shapes: ["linear", "subadditive"]
+  
+  # Allocation methods
+  allocation_methods:
+    - "proportional"
+    - "exact_shapley"
+    - "mc_shapley"
+    - "weighted_shapley"
+    - "marginal"

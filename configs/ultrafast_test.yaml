@@ -1,0 +1,32 @@
+# Ultra-fast test configuration for development
+# Runs minimal experiments to test system functionality
+
+# Basic parameters
+n_agents: [3, 4]  # Small number of agents for quick testing
+n_mc_samples: 100  # Very low sample count for speed
+n_iterations: 2    # Just a couple of iterations
+
+# Contribution parameters
+mu: [10.0]         # Mean contribution
+sigma_q: [1.0]     # Contribution noise level
+
+# Reporting parameters
+sigma_report: [0.1]  # Low reporting noise
+reporting_models: ['truthful']  # Just truthful reporting
+
+# Game properties
+payoff_shapes: ['linear', 'subadditive']  # Test different payoff shapes
+
+# Allocation methods (using fast methods)
+allocation_methods: ['exact_shapley', 'proportional', 'equal']
+
+# Incentive parameters
+detection_prob: [0.0, 0.5]  # No detection and moderate detection
+penalty: [0.0, 1.0]         # No penalty and moderate penalty
+
+# Core analysis (limited)
+check_core_lp: false  # Skip expensive core analysis
+compute_nash: false   # Skip Nash computation
+
+# Output parameters
+output_dir: 'experiments/ultrafast_demo'

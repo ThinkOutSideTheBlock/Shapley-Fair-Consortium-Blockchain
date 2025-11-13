@@ -1,0 +1,68 @@
+# Reduced Experimental Configuration for Publication
+# Purpose: Feasible parameter sweep for preprint submission
+# Estimated runtime: 5-7 days on 8-core workstation (15,360 total runs)
+# Trade-off: Strategic reduction while maintaining statistical power
+
+run_id: "shapley_consortium_publishable"
+random_seed: 42
+log_level: "INFO"
+
+# Output configuration
+output_dir: "experiments/publishable_run"
+parallel_workers: 8
+checkpoint_interval: 100
+
+# Monte Carlo settings
+n_iterations: 1  # Single iteration per configuration for initial sweep
+n_mc_samples: 5000  # High quality MC approximation
+
+# STRATEGICALLY REDUCED PARAMETER GRID
+# Total combinations: 3 × 3 × 2 × 4 × 3 × 3 × 3 × 4 = 15,552 runs
+# Runtime estimate: ~2-3 seconds per run = 43,200 seconds = 12 hours on 8 cores
+
+parameters:
+  # Network size (REDUCED from 4 to 3 levels)
+  # Rationale: Drop n=10 (exact Shapley infeasible), focus on consortium-relevant sizes
+  n_agents: [4, 6, 8]
+
+  # Contribution distribution (REDUCED from 4 to 3 levels)
+  # Rationale: Cover low/medium/high, drop extreme values
+  mu: [5.0, 10.0, 20.0]
+
+  # Contribution heterogeneity (REDUCED from 3 to 2 levels)
+  # Rationale: Keep low (homogeneous) vs high (heterogeneous)
+  sigma_q: [2.0, 5.0]
+
+  # Reporting noise (REDUCED from 5 to 4 levels)
+  # Rationale: Cover truthful, low, medium, high noise
+  sigma_report: [0.0, 0.5, 1.0, 2.0]
+
+  # Detection probability (REDUCED from 4 to 3 levels)
+  # Rationale: No enforcement, moderate, high enforcement
+  detection_prob: [0.0, 0.5, 0.9]
+
+  # Penalty factor (REDUCED from 4 to 3 levels)
+  # Rationale: No penalty, moderate, severe
+  penalty: [0.0, 1.0, 5.0]
+
+  # Game structure (KEEP all 3 - critical for diversity)
+  payoff_shapes: ["linear", "subadditive", "superadditive"]
+
+  # Allocation methods (ALL 4 methods)
+  allocation_methods:
+    - "exact_shapley"           # Ground truth for small n
+    - "mc_shapley"              # Standard MC baseline
+    - "mc_shapley_stratified"   # Novel variance reduction
+    - "weighted_shapley_owen"   # Novel weighted approach
+
+  # Distribution type (FIXED to lognormal for consistency)
+  q_dist: ["lognormal"]
+
+  # Reporting model (FIXED to truthful for base analysis)
+  report_model: ["truthful"]
+
+# Optional: Enable Nash equilibrium for subset
+# nash_equilibrium_subset: 0.1  # Compute for 10% of runs (expensive)
+
+# Optional: Enable core membership checks
+# core_membership_checks: true

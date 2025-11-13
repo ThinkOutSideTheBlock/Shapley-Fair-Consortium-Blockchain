@@ -1,0 +1,47 @@
+# Scalability Benchmark Configuration
+# Purpose: Demonstrate computational efficiency for large n
+# Focus: Compare exact vs MC methods, show stratified/Owen benefits
+
+run_id: "shapley_scalability"
+random_seed: 42
+log_level: "INFO"
+
+output_dir: "experiments/scalability_benchmark"
+parallel_workers: 8
+checkpoint_interval: 50
+
+n_iterations: 10  # Multiple runs for each config
+n_mc_samples: 10000  # High sample count for accuracy
+
+# Total combinations: 5 × 4 × 3 = 60 base configs × 10 iterations = 600 runs
+# Runtime: ~5-10 hours on 8 cores
+
+parameters:
+  # Agent count (SCALABILITY FOCUS)
+  n_agents: [5, 10, 20, 50, 100]
+
+  # Allocation methods (COMPARE efficiency)
+  allocation_methods:
+    - "exact_shapley"           # Baseline (infeasible for n > 12)
+    - "mc_shapley"              # Standard MC
+    - "mc_shapley_stratified"   # Variance-reduced MC
+    - "weighted_shapley_owen"   # Owen sampling
+
+  # MC sample counts (CONVERGENCE ANALYSIS)
+  # Note: This requires code modification to expose n_mc_samples as parameter
+  # For now, use fixed n_mc_samples from top-level config
+
+  # Fixed parameters for consistency
+  mu: [10.0]
+  sigma_q: [2.0]
+  sigma_report: [0.0]
+  detection_prob: [0.0]
+  penalty: [0.0]
+  payoff_shapes: ["linear", "subadditive", "superadditive"]
+  q_dist: ["lognormal"]
+  report_model: ["truthful"]
+
+# Analysis focus:
+# - Computation time vs n (should show exponential for exact, linear for MC)
+# - Convergence rate: stratified vs standard MC
+# - Accuracy: compare MC methods to exact Shapley for n ≤ 10
